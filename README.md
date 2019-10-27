@@ -47,7 +47,29 @@ esses são os endpoints que podem ser acessados no servidor.
 esses endpoints são responsaveis pelo sitema de login
 
 - POST /authentication/signup:
-    esse endpoint recebe um body com o usuario, cria esse usuario e o salva no banco, ainda falta adicionar as outras propiedades do usuario e criar a pessoa relacionada aquele usuario.
+    esse endpoint recebe um body com o usuario, cria esse usuario e o salva no banco eretorna o JWT desse usuario, ainda falta  criar a pessoa relacionada aquele usuario.
+
+    - body:
+
+        ```json
+        {
+          "login":"bla",
+          "senha":"123",
+          "pessoa_CPF":"46553465238",
+          "posto_razao_social":"blabla"
+        }
+        ```
+    
+    - resposta:
+
+        ```json
+        {
+          "token":"dnhsadsagdg8ue3782y782w3"
+        }
+        ```
+
+- POST /authentication/login:
+    esse endpoint recebe um body com o usuario verifica se a senha é valida e se for retorna um JWT .
 
     - body:
 
