@@ -5,6 +5,7 @@ const { ExtractJwt } = require('passport-jwt');
 const localStrategy = require('passport-local').Strategy;
 
 const User = require('./db/commands');
+const util = require('./utilites/cripto');
 
 const JWT_SECRET = '3213131vvvd\sfdfbgb gbz';
 
@@ -19,21 +20,15 @@ passport.use(new jwtStrategy({
   jwtFromRequest: ExtractJwt.fromHeader('authorization'),
   secretOrKey: JWT_SECRET
 }, async (payload, done) => {
-  try {
-    //find user on the token 
-    const user = await User.findById(payload.sub);
-
+  //find user on the token 
+  User.findLogin(payload.sub, user => {
     //if user doesnt exist deal with it 
     if (!user) {
       return done(null, false);
     }
-
     //otherwise return the user
     done(null, user);
-
-  } catch (err) {
-    done(err, false);
-  }
+  });
 }));
 
 
@@ -44,7 +39,7 @@ passport.use(new localStrategy({
   passwordField: 'senha'
 }, async (login, senha, done) => {
   //find the user with the username
-  User.findLogin(login, (user) => {
+  User.findLogin(login, user => {
 
     //if not handle it 
     if (!user) {
@@ -52,8 +47,7 @@ passport.use(new localStrategy({
     }
 
     //check if passsword is correct
-    const isMatch = user.senha === senha;
-
+    const isMatch = util.compare(user.senha, senha);
     //if not handle it 
     if (!isMatch) {
       return done(null, false);

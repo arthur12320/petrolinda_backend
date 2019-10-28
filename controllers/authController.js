@@ -3,6 +3,7 @@ const JWT = require('jsonwebtoken');
 const JWT_SECRET = '3213131vvvd\sfdfbgb gbz';
 
 const usuario = require('../db/commands');
+const util = require('../utilites/cripto');
 
 signToken = user => {
   return token = JWT.sign({
@@ -27,7 +28,7 @@ module.exports = {
         // user doesnt exit create new user
         const newUsuario = {
           login,
-          senha,
+          senha: util.encrypt(senha),
           pessoa_CPF,
           posto_razao_social
         }
@@ -37,13 +38,13 @@ module.exports = {
           let token = signToken(newUsuario);
 
           //respond with token 
-          res.json({ token });
-        }, err => [
-          res.status(500).send({
+          return res.json({ token });
+        }, function (err) {
+          return res.status(500).send({
             message: 'error signing up',
             err
           })
-        ])
+        });
       }
 
     });

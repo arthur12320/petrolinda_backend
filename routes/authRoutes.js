@@ -14,6 +14,9 @@ router.post('/signup', signUp); //done
 
 router.post('/login', passportLocal, logIn);
 
+router.get('/testjwt', passportJWT, (req, res) => {
+  res.send(req.user);
+})
 
 
 module.exports = router;

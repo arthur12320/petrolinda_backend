@@ -20,7 +20,7 @@ app.use(express.json());
 
 //routes
 app.use('/authentication', require('./routes/authRoutes'));
-
+app.use('/users', require('./routes/userRoutes'));
 
 
 //connect

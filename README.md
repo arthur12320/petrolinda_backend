@@ -87,3 +87,41 @@ esses endpoints são responsaveis pelo sitema de login
           "token":"dnhsadsagdg8ue3782y782w3"
         }
         ```
+
+
+- GET /authentication/testjwt:
+    esse endpoint foi feito pra testar a autenticação com jwt que sera adicionada a outros endpoints depois, nele você pode passar um JWT no parametro de Authorization da header e se o JWT for valido ele retornara o objeto usuario do usuario de onde aquele JWT veio.
+
+    - header:
+
+        ```json
+         "Authorization":"dnhsadsagdg8ue3782y782w3"
+        ```
+      
+    - resposta:
+
+        ```json
+          "login":"bla",
+          "senha":"123",
+          "pessoa_CPF":"46553465238",
+          "posto_razao_social":"blabla"
+        ```
+
+### /users
+
+esses endpoitns são destinados para acesso de informações dos usuarios
+
+- GET /users
+
+endpoi vai retornar objeto com informações de todos usuarios da tabela usuarios
+
+    - resposta:
+
+        ```json
+        {
+          "nome": "ble",
+          "login": "bin",
+          "pessoa_cpf": "3",
+          "posto_razao_social": "posto1"
+        }
+        ```
