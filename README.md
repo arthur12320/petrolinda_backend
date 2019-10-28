@@ -47,6 +47,7 @@ esses são os endpoints que podem ser acessados no servidor.
 esses endpoints são responsaveis pelo sitema de login
 
 - POST /authentication/signup:
+
     esse endpoint recebe um body com o usuario, cria esse usuario e o salva no banco eretorna o JWT desse usuario, ainda falta  criar a pessoa relacionada aquele usuario.
 
     - body:
@@ -69,6 +70,7 @@ esses endpoints são responsaveis pelo sitema de login
         ```
 
 - POST /authentication/login:
+
     esse endpoint recebe um body com o usuario verifica se a senha é valida e se for retorna um JWT .
 
     - body:
@@ -90,6 +92,7 @@ esses endpoints são responsaveis pelo sitema de login
 
 
 - GET /authentication/testjwt:
+
     esse endpoint foi feito pra testar a autenticação com jwt que sera adicionada a outros endpoints depois, nele você pode passar um JWT no parametro de Authorization da header e se o JWT for valido ele retornara o objeto usuario do usuario de onde aquele JWT veio.
 
     - header:
@@ -113,15 +116,15 @@ esses endpoitns são destinados para acesso de informações dos usuarios
 
 - GET /users
 
-endpoi vai retornar objeto com informações de todos usuarios da tabela usuarios
+    endpoint vai retornar objeto com informações de todos usuarios da tabela usuarios
 
-    - resposta:
+        - resposta:
 
-        ```json
-        {
-          "nome": "ble",
-          "login": "bin",
-          "pessoa_cpf": "3",
-          "posto_razao_social": "posto1"
-        }
-        ```
+            ```json
+            {
+              "nome": "ble",
+              "login": "bin",
+              "pessoa_cpf": "3",
+              "posto_razao_social": "posto1"
+            }
+            ```
