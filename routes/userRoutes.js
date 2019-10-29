@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
-const { getAllUsers } = require('../controllers/userController');
+const { getAllUsers, deleteOneUser } = require('../controllers/userController');
 
 // routes based on /users
 
 router.get('', getAllUsers); //done
+router.delete('/:login', deleteOneUser);
 
 
 

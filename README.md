@@ -56,8 +56,9 @@ esses endpoints são responsaveis pelo sitema de login
         {
           "login":"bla",
           "senha":"123",
-          "pessoa_CPF":"46553465238",
-          "posto_razao_social":"blabla"
+          "nome":"blabla",
+          "CPF":"1111111111",
+          "id_posto":"215532"
         }
         ```
     
@@ -128,3 +129,31 @@ esses endpoitns são destinados para acesso de informações dos usuarios
               "posto_razao_social": "posto1"
             }
             ```
+
+- DELETE /users/:login
+
+    endpoint vai excluir o usuario com login igual aos provido na URL
+
+
+### /stations
+
+    endpoints fcados nas funcionalidades relcionadas aos postos 
+
+- GET /stations
+    
+    endpoint vai retornar array de todos os postos listando so itens abaixo:
+
+        - resposta:
+
+            ```json
+            [
+              {
+                "id":"sdas",
+                "razao_social":"sadsaa",
+                "nome_fantasia":"dnasjkdbsaj",
+                "longitude":438274823,
+                "latitude":3424327423,
+                "bandeira":"shell"
+              }
+            ]
+            ``` 

@@ -1,11 +1,12 @@
 const db = require('./db');
 
 module.exports = {
-  createUsuario: async (user, callback, error) => {
+  createUsuario: async (user, callback) => {
     let sql = 'INSERT INTO usuario SET ?'
     let query = db.query(sql, user, (err, result) => {
       if (err) {
-        error(err);
+        console.log(err);
+        callback(null);
       } else {
         callback(result)
       }
@@ -30,6 +31,48 @@ module.exports = {
         callback(result)
       }
     })
-  }
+  },
+  createNullEndereco: (callback) => {
+    let sql = "INSERT INTO `petrolinda`.`endereco` () VALUES ()";
+    db.query(sql, (err, result) => {
+      if (err) {
+        callback(null);
+      } else {
+        callback(result.insertId)
+      }
+    })
+  },
+  createPessoa: (pessoa, callback) => {
+    let sql = 'INSERT INTO pessoa SET ?'
+    let query = db.query(sql, pessoa, (err, result) => {
+      if (err) {
+        callback(null);
+      } else {
+        callback(result.affectedRows)
+      }
+
+    })
+  },
+  deleteOneUser: (login, callback) => {
+    let sql = `DELETE FROM usuario WHERE usuario.login=${db.escape(login)}`;
+    let query = db.query(sql, (err, result) => {
+      if (err) {
+        callback(null);
+      } else {
+        callback(true)
+      }
+
+    });
+  }, getAllPostos: (callback) => {
+    let sql = `SELECT A.id,A.razao_social,A.nome_fantasia,A.longitude,A.latitude,B.nome FROM posto AS A INNER JOIN bandeira AS B ON B.id = A.bandeira_id`;
+    db.query(sql, (err, result) => {
+      if (err) {
+        console.log(err);
+        callback(null);
+      } else {
+        callback(result)
+      }
+    })
+  },
 }
 

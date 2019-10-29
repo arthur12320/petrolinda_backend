@@ -2,7 +2,7 @@ const JWT = require('jsonwebtoken');
 
 const JWT_SECRET = '3213131vvvd\sfdfbgb gbz';
 
-const usuario = require('../db/commands');
+const banco = require('../db/commands');
 const util = require('../utilites/cripto');
 
 signToken = user => {
@@ -17,38 +17,56 @@ signToken = user => {
 module.exports = {
   signUp: async (req, res) => {
     //pegar login, senha, pessoa_CPF e posto_razao_social do body
-    const { login, senha, pessoa_CPF, posto_razao_social } = req.body;
+    const { login, senha, nome, CPF, id_posto } = req.body;
 
     //check if user already exists
-    usuario.findLogin(login, result => {
+    banco.findLogin(login, result => {
       if (result) {
         //user exists
         return res.status(403).json({ error: 'this user already exists' })
       } else {
-        // user doesnt exit create new user
-        const newUsuario = {
-          login,
-          senha: util.encrypt(senha),
-          pessoa_CPF,
-          posto_razao_social
-        }
-        //save new user to db 
-        usuario.createUsuario(newUsuario, result => {
-          //sign token 
-          let token = signToken(newUsuario);
+        //criar endereço com tudo null
+        banco.createNullEndereco((enderecoId) => {
+          //testar erro na criação
+          if (!enderecoId) {
+            return res.status(500).send({ message: 'error creating user1' });
+          }
 
-          //respond with token 
-          return res.json({ token });
-        }, function (err) {
-          return res.status(500).send({
-            message: 'error signing up',
-            err
-          })
+          //criar pessoa
+          const newPessoa = {
+            nome,
+            CPF,
+            endereco_id: enderecoId
+          }
+          banco.createPessoa(newPessoa, (pessoaId) => {
+            //testar erro na criação 
+            if (!pessoaId) {
+              return res.status(500).send({ message: 'error creating user2' });
+            }
+
+            //criar usuario 
+            const newUser = {
+              login,
+              senha: util.encrypt(senha),
+              pessoa_cpf: CPF,
+              posto_id: id_posto
+            };
+            banco.createUsuario(newUser, (result) => {
+              //testar erro de criação
+              if (!result) {
+                return res.status(500).send({ message: 'error creating user3' });
+              }
+
+              //sign token 
+              let token = signToken(newUser);
+
+              //respond with token 
+              return res.json({ token });
+            });
+          });
         });
-      }
-
+      };
     });
-
   },
   logIn: (req, res) => {
     //generate token

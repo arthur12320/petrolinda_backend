@@ -21,7 +21,7 @@ app.use(express.json());
 //routes
 app.use('/authentication', require('./routes/authRoutes'));
 app.use('/users', require('./routes/userRoutes'));
-
+app.use('/stations', require('./routes/stationRouter'));
 
 //connect
 const port = process.env.PORT || 3000;
