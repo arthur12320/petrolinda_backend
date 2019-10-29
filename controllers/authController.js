@@ -26,10 +26,10 @@ module.exports = {
         return res.status(403).json({ error: 'this user already exists' })
       } else {
         //criar endereço com tudo null
-        banco.createNullEndereco((enderecoId) => {
+        banco.createNullEndereco((enderecoId, err) => {
           //testar erro na criação
           if (!enderecoId) {
-            return res.status(500).send({ message: 'error creating user1' });
+            return res.status(500).send({ message: 'error creating user1', error: err });
           }
 
           //criar pessoa
@@ -38,10 +38,10 @@ module.exports = {
             CPF,
             endereco_id: enderecoId
           }
-          banco.createPessoa(newPessoa, (pessoaId) => {
+          banco.createPessoa(newPessoa, (pessoaId, err) => {
             //testar erro na criação 
             if (!pessoaId) {
-              return res.status(500).send({ message: 'error creating user2' });
+              return res.status(500).send({ message: 'error creating user2', error: err });
             }
 
             //criar usuario 
@@ -51,10 +51,10 @@ module.exports = {
               pessoa_cpf: CPF,
               posto_id: id_posto
             };
-            banco.createUsuario(newUser, (result) => {
+            banco.createUsuario(newUser, (result, err) => {
               //testar erro de criação
               if (!result) {
-                return res.status(500).send({ message: 'error creating user3' });
+                return res.status(500).send({ message: 'error creating user3', error: err });
               }
 
               //sign token 

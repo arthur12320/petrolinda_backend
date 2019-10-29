@@ -6,7 +6,7 @@ module.exports = {
     let query = db.query(sql, user, (err, result) => {
       if (err) {
         console.log(err);
-        callback(null);
+        callback(null, err);
       } else {
         callback(result)
       }
@@ -17,7 +17,7 @@ module.exports = {
     let sql = `SELECT * FROM usuario WHERE login = ${db.escape(login)}`;
     db.query(sql, (err, result) => {
       if (err) {
-        callback(null);
+        callback(null, err);
       }
       callback(result[0]);
     })
@@ -26,7 +26,7 @@ module.exports = {
     let sql = `SELECT B.nome,A.* FROM usuario AS A INNER JOIN pessoa AS B ON B.cpf = A.pessoa_cpf`;
     db.query(sql, (err, result) => {
       if (err) {
-        callback(null);
+        callback(null, err);
       } else {
         callback(result)
       }
@@ -36,7 +36,7 @@ module.exports = {
     let sql = "INSERT INTO `petrolinda`.`endereco` () VALUES ()";
     db.query(sql, (err, result) => {
       if (err) {
-        callback(null);
+        callback(null, err);
       } else {
         callback(result.insertId)
       }
@@ -46,7 +46,7 @@ module.exports = {
     let sql = 'INSERT INTO pessoa SET ?'
     let query = db.query(sql, pessoa, (err, result) => {
       if (err) {
-        callback(null);
+        callback(null, err);
       } else {
         callback(result.affectedRows)
       }
@@ -57,7 +57,7 @@ module.exports = {
     let sql = `DELETE FROM usuario WHERE usuario.login=${db.escape(login)}`;
     let query = db.query(sql, (err, result) => {
       if (err) {
-        callback(null);
+        callback(null, err);
       } else {
         callback(true)
       }
@@ -68,7 +68,7 @@ module.exports = {
     db.query(sql, (err, result) => {
       if (err) {
         console.log(err);
-        callback(null);
+        callback(null, err);
       } else {
         callback(result)
       }
