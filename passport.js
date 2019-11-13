@@ -11,7 +11,7 @@ const JWT_SECRET = '3213131vvvd\sfdfbgb gbz';
 
 
 // cmmand to create user:
-// INSERT INTO `petrolinda`.`usuario` (`login`, `senha`, `pessoa_cpf`, `posto_razao_social`) VALUES ('deb', '123', '2', 'posto1');
+// INSERT INTO `PetroLinda`.`usuario` (`login`, `senha`, `pessoa_cpf`, `posto_razao_social`) VALUES ('deb', '123', '2', 'posto1');
 
 // !!!!! convert strategy to mysql !!!!!!!
 //JSON web tokens strategy

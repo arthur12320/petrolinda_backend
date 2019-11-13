@@ -5,7 +5,7 @@ const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: 'password',
-  database: 'petrolinda' //needs to be a valid database already created;
+  database: 'PetroLinda' //needs to be a valid database already created;
 });
 
 

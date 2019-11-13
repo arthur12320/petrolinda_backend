@@ -33,7 +33,7 @@ module.exports = {
     })
   },
   createNullEndereco: (callback) => {
-    let sql = "INSERT INTO `petrolinda`.`endereco` () VALUES ()";
+    let sql = "INSERT INTO `PetroLinda`.`endereco` () VALUES ()";
     db.query(sql, (err, result) => {
       if (err) {
         callback(null, err);

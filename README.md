@@ -1,4 +1,4 @@
-# backend petrolinda
+# backend PetroLinda
 
 esse é o backend do projeto, primeiramente algumas coisas qe vc vai
 precisar modificar pra ele pegar no seu PC:
@@ -18,7 +18,7 @@ precisar modificar pra ele pegar no seu PC:
       host: 'localhost',        //<-- host do servidor onde seu banco está localizado
       user: 'root',             //<-- user que você vai usar pra loggar !!deve rodar o comando um com esse usuario!!
       password: 'password',     //<-- a senha do usuario !!essa senha deve ser o 'password' do comando 1
-      database: 'petrolinda',   //<-- nome do banco que você criou
+      database: 'PetroLinda',   //<-- nome do banco que você criou
     }
     ```
 
