@@ -24,6 +24,7 @@ app.use(express.json());
 app.use('/authentication', require('./routes/authRoutes'));
 app.use('/users', require('./routes/userRoutes'));
 app.use('/stations', require('./routes/stationRouter'));
+app.use('/bandeiras', require('./routes/bandeiraRoutes'));
 
 //connect
 const port = process.env.PORT || 3000;

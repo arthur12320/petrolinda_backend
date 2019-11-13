@@ -157,3 +157,27 @@ esses endpoitns são destinados para acesso de informações dos usuarios
               }
             ]
             ``` 
+
+
+### /bandeiras
+
+    endpoints focados nas funcionalidades de bandeiras 
+
+- GET /bandeiras
+    
+    endpoint vai retornar array de todas as bandeiras criadas
+
+        - resposta:
+
+            ```json
+            [
+              {
+                "id":1,
+                "nome":"shell"
+              },
+              {
+                "id":2,
+                "nome":"ipiranga"
+              }
+            ]
+            ``` 
