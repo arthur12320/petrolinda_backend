@@ -63,7 +63,8 @@ module.exports = {
       }
 
     });
-  }, getAllPostos: (callback) => {
+  },
+  getAllPostos: (callback) => {
     let sql = `SELECT A.id,A.razao_social,A.nome_fantasia,A.longitude,A.latitude,B.nome FROM posto AS A INNER JOIN bandeira AS B ON B.id = A.bandeira_id`;
     db.query(sql, (err, result) => {
       if (err) {
@@ -74,5 +75,16 @@ module.exports = {
       }
     })
   },
+  getAllBandeiras: (callback) => {
+    let sql = `SELECT id,nome FROM petrolinda.bandeira;`;
+    db.query(sql, (err, result) => {
+      if (err) {
+        console.log(err);
+        callback(null, err);
+      } else {
+        callback(result)
+      }
+    })
+  }
 }
 
