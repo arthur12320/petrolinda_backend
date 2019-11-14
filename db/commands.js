@@ -23,7 +23,7 @@ module.exports = {
     })
   },
   getAllUsers: (callback) => {
-    let sql = `SELECT B.nome,A.* FROM usuario AS A INNER JOIN pessoa AS B ON B.cpf = A.pessoa_cpf`;
+    let sql = `SELECT * FROM usuario`;
     db.query(sql, (err, result) => {
       if (err) {
         callback(null, err);
@@ -65,7 +65,7 @@ module.exports = {
     });
   },
   getAllPostos: (callback) => {
-    let sql = `SELECT A.id,A.razao_social,A.nome_fantasia,A.longitude,A.latitude,B.nome FROM posto AS A INNER JOIN bandeira AS B ON B.id = A.bandeira_id`;
+    let sql = `SELECT A.id,A.razao_social,A.nome_fantasia,A.longitude,A.latitude,B.nome_fantasia FROM posto AS A INNER JOIN bandeira AS B ON B.id = A.bandeira_id`;
     db.query(sql, (err, result) => {
       if (err) {
         console.log(err);
@@ -76,7 +76,7 @@ module.exports = {
     })
   },
   getAllBandeiras: (callback) => {
-    let sql = `SELECT id,nome FROM petrolinda.bandeira;`;
+    let sql = `SELECT id,nome_fantasia FROM bandeira;`;
     db.query(sql, (err, result) => {
       if (err) {
         console.log(err);
