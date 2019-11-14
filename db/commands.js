@@ -65,7 +65,7 @@ module.exports = {
     });
   },
   getAllPostos: (callback) => {
-    let sql = `SELECT A.id,A.razao_social,A.nome_fantasia,A.longitude,A.latitude,B.nome_fantasia FROM posto AS A INNER JOIN bandeira AS B ON B.id = A.bandeira_id`;
+    let sql = `SELECT A.id,A.razao_social,A.nome_fantasia,A.longitude,A.latitude,A.nome_fantasia FROM posto AS A INNER JOIN bandeira AS B ON B.id = A.bandeira_id`;
     db.query(sql, (err, result) => {
       if (err) {
         console.log(err);
