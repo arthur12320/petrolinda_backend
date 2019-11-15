@@ -113,7 +113,7 @@ esses endpoints são responsaveis pelo sitema de login
 
 ### /users
 
-esses endpoitns são destinados para acesso de informações dos usuarios
+esses endpoints são destinados para acesso de informações dos usuarios
 
 - GET /users
 
@@ -149,7 +149,7 @@ esses endpoitns são destinados para acesso de informações dos usuarios
 
 ### /stations
 
-    endpoints fcados nas funcionalidades relcionadas aos postos 
+endpoints focados nas funcionalidades relcionadas aos postos 
 
 - GET /stations
     
@@ -190,7 +190,7 @@ esses endpoitns são destinados para acesso de informações dos usuarios
 
 ### /bandeiras
 
-    endpoints focados nas funcionalidades de bandeiras 
+endpoints focados nas funcionalidades de bandeiras 
 
 - GET /bandeiras
     
@@ -214,7 +214,7 @@ esses endpoitns são destinados para acesso de informações dos usuarios
 
 ### /abastecimento
 
-    endpoints focados em abastecimentos 
+endpoints focados em abastecimentos 
 
 - POST /abastecimento
     
@@ -241,3 +241,28 @@ esses endpoitns são destinados para acesso de informações dos usuarios
               "message": "abastecimento adicionado"
             }
             ```
+
+
+### /tanques
+
+endpoints focados em tanques
+
+- GET /tanques/id
+
+  retorna os tanques que o posto com aquela id possue.
+
+  - resposta: 
+
+      ```json
+        [
+          {
+            "id": 195,
+            "nome": "Diesel"
+          },
+          {
+            "id": 210,
+            "nome": "Gasolina"
+          }
+        ]
+      ```
+

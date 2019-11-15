@@ -115,6 +115,21 @@ module.exports = {
         callback(result);
       }
     });
+  },
+  listTanques: (postoid, callback) => {
+    let sql = `SELECT A.id,B.nome
+    FROM tanque AS A
+    INNER JOIN combustivel AS B
+    ON A.combustivel_id = B.id
+    AND A.posto_id = ${db.escape(postoid)};`
+    db.query(sql, (err, result) => {
+      if (err) {
+        callback(null, err);
+      } else {
+        callback(result);
+      }
+    });
+
   }
 }
 

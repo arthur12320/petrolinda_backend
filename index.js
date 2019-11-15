@@ -26,6 +26,7 @@ app.use('/users', require('./routes/userRoutes'));
 app.use('/stations', require('./routes/stationRouter'));
 app.use('/bandeiras', require('./routes/bandeiraRoutes'));
 app.use('/abastecimento', require('./routes/abastecimentoRoutes'));
+app.use('/tanques', require('./routes/tanqueRoutes'));
 
 //connect
 const port = process.env.PORT || 3333;
