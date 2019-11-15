@@ -170,6 +170,23 @@ esses endpoitns são destinados para acesso de informações dos usuarios
         ]
         ``` 
 
+- POST /stations
+    
+    endpoint vai criar um novo posto:
+
+    - resposta:
+
+        ```json
+        {
+          "razao_social":"teste3",
+          "nome_fantasia":"teste3",
+          "longitude":-7.990685,
+          "latitude":-34.845299,
+          "bandeira_id":1,
+          "endereco_id":1
+        }
+        ``` 
+
 
 ### /bandeiras
 

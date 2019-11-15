@@ -105,6 +105,16 @@ module.exports = {
         callback(result);
       }
     });
+  },
+  addPosto: (razao_social, nome_fantasia, longitude, latitude, bandeira_id, endereco_id, callback) => {
+    let sql = `CALL cadastrar_posto(${db.escape(razao_social)},${db.escape(nome_fantasia)},${db.escape(longitude)},${db.escape(latitude)},${db.escape(bandeira_id)},${db.escape(endereco_id)})`;
+    db.query(sql, (err, result) => {
+      if (err) {
+        callback(null, err);
+      } else {
+        callback(result);
+      }
+    });
   }
 }
 

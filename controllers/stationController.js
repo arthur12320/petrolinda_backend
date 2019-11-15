@@ -13,5 +13,15 @@ module.exports = {
       });
       return res.send(postos);
     });
+  },
+  addPosto: (req, res) => {
+    const { razao_social, nome_fantasia, longitude, latitude, bandeira_id, endereco_id } = req.body;
+    banco.addPosto(razao_social, nome_fantasia, longitude, latitude, bandeira_id, endereco_id, (result, err) => {
+      if (err) {
+        return res.status(500).send({ message: 'error creating posto', err: err });
+      }
+      return res.send({ message: 'posto criado' })
+    })
+
   }
 }
