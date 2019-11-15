@@ -130,6 +130,16 @@ module.exports = {
       }
     });
 
+  },
+  lastAbastecimentos: (callback) => {
+    let sql = `SELECT * from abastecimentos ORDER BY abastecimentos.abastecimentos_id DESC LIMIT 100;`;
+    db.query(sql, (err, result) => {
+      if (err) {
+        callback(null, err);
+      } else {
+        callback(result);
+      }
+    });
   }
 }
 

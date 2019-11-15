@@ -8,12 +8,22 @@ module.exports = {
 
     banco.addAbastecimento(valorAbastecido, placa, valorLitro, litrosAbastecidos, dataAbastecimento, id_tanque, (result, err) => {
       if (err) {
-        res.status(500).send({ message: 'error criando abastecimento', sqlErr: err });
-      } else {
-        res.send({ message: 'abastecimento adicionado' });
+        return res.status(500).send({ message: 'error criando abastecimento', sqlErr: err });
       }
+      return res.send({ message: 'abastecimento adicionado' });
+
     });
 
+  },
+  listLatests: async (req, res) => {
+    banco.lastAbastecimentos((back, err) => {
+      if (err) {
+        return res.status(500).send({ message: 'erro listando abastecimentos', sqlErr: err });
+      }
+
+      return res.send(back);
+
+    })
   }
 }
 
