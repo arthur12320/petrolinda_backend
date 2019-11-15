@@ -17,56 +17,29 @@ signToken = user => {
 module.exports = {
   signUp: async (req, res) => {
     //pegar login, senha, pessoa_CPF e posto_razao_social do body
-    const { login, senha, nome, CPF, id_posto } = req.body;
+    const { login, senha, nome, id_posto } = req.body;
 
-    //check if user already exists
-    banco.findLogin(login, result => {
-      if (result) {
-        //user exists
-        return res.status(403).json({ error: 'this user already exists' })
-      } else {
-        //criar endereço com tudo null
-        banco.createNullEndereco((enderecoId, err) => {
-          //testar erro na criação
-          if (!enderecoId) {
-            return res.status(500).send({ message: 'error creating user1', error: err });
-          }
+    //criar usuario
+    const newUser = {
+      login,
+      senha: util.encrypt(senha),
+      nome,
+      posto_id: id_posto
+    }
 
-          //criar pessoa
-          const newPessoa = {
-            nome,
-            CPF,
-            endereco_id: enderecoId
-          }
-          banco.createPessoa(newPessoa, (pessoaId, err) => {
-            //testar erro na criação 
-            if (!pessoaId) {
-              return res.status(500).send({ message: 'error creating user2', error: err });
-            }
+    banco.createUsuario(newUser, (result, err) => {
+      //testar erro de criação
+      if (!result) {
+        return res.status(500).send({ message: 'error creating user3', error: err });
+      }
 
-            //criar usuario 
-            const newUser = {
-              login,
-              senha: util.encrypt(senha),
-              pessoa_cpf: CPF,
-              posto_id: id_posto
-            };
-            banco.createUsuario(newUser, (result, err) => {
-              //testar erro de criação
-              if (!result) {
-                return res.status(500).send({ message: 'error creating user3', error: err });
-              }
+      //sign token 
+      let token = signToken(newUser);
 
-              //sign token 
-              let token = signToken(newUser);
-
-              //respond with token 
-              return res.json({ token });
-            });
-          });
-        });
-      };
+      //respond with token 
+      return res.json({ token });
     });
+
   },
   logIn: (req, res) => {
     //generate token

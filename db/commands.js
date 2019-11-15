@@ -42,17 +42,17 @@ module.exports = {
       }
     })
   },
-  createPessoa: (pessoa, callback) => {
-    let sql = 'INSERT INTO pessoa SET ?'
-    let query = db.query(sql, pessoa, (err, result) => {
-      if (err) {
-        callback(null, err);
-      } else {
-        callback(result.affectedRows)
-      }
+  // createPessoa: (pessoa, callback) => {
+  //   let sql = 'INSERT INTO pessoa SET ?'
+  //   let query = db.query(sql, pessoa, (err, result) => {
+  //     if (err) {
+  //       callback(null, err);
+  //     } else {
+  //       callback(result.affectedRows)
+  //     }
 
-    })
-  },
+  //   })
+  // },
   deleteOneUser: (login, callback) => {
     let sql = `DELETE FROM usuario WHERE usuario.login=${db.escape(login)}`;
     let query = db.query(sql, (err, result) => {

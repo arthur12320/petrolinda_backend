@@ -40,7 +40,7 @@ passport.use(new localStrategy({
 }, async (login, senha, done) => {
   //find the user with the username
   User.findLogin(login, user => {
-
+    console.log(user);
     //if not handle it 
     if (!user) {
       return done(null, false);
