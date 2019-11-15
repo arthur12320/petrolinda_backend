@@ -85,6 +85,16 @@ module.exports = {
         callback(result)
       }
     })
+  },
+  addAbastecimento: (valorPago, placa, valorLitro, litrosAbastecidos, dataAbastecimento, id_tanque, callback) => {
+    let sql = `CALL PetroLinda.secure_insert_abastecimento(${db.escape(valorPago)},${db.escape(placa)},${db.escape(valorLitro)},${db.escape(litrosAbastecidos)},${db.escape(dataAbastecimento)},${db.escape(id_tanque)})`
+    db.query(sql, (err, result) => {
+      if (err) {
+        callback(null, err);
+      } else {
+        callback(result);
+      }
+    });
   }
 }
 

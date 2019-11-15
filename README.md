@@ -119,16 +119,16 @@ esses endpoitns são destinados para acesso de informações dos usuarios
 
     endpoint vai retornar objeto com informações de todos usuarios da tabela usuarios
 
-        - resposta:
+    - resposta:
 
-            ```json
-            {
-              "nome": "ble",
-              "login": "bin",
-              "pessoa_cpf": "3",
-              "posto_razao_social": "posto1"
-            }
-            ```
+        ```json
+        {
+          "nome": "ble",
+          "login": "bin",
+          "pessoa_cpf": "3",
+          "posto_razao_social": "posto1"
+        }
+        ```
 
 - DELETE /users/:login
 
@@ -143,20 +143,20 @@ esses endpoitns são destinados para acesso de informações dos usuarios
     
     endpoint vai retornar array de todos os postos listando so itens abaixo:
 
-        - resposta:
+    - resposta:
 
-            ```json
-            [
-              {
-                "id":"sdas",
-                "razao_social":"sadsaa",
-                "nome_fantasia":"dnasjkdbsaj",
-                "longitude":438274823,
-                "latitude":3424327423,
-                "bandeira":"shell"
-              }
-            ]
-            ``` 
+        ```json
+        [
+          {
+            "id":"sdas",
+            "razao_social":"sadsaa",
+            "nome_fantasia":"dnasjkdbsaj",
+            "longitude":438274823,
+            "latitude":3424327423,
+            "bandeira":"shell"
+          }
+        ]
+        ``` 
 
 
 ### /bandeiras
@@ -167,17 +167,48 @@ esses endpoitns são destinados para acesso de informações dos usuarios
     
     endpoint vai retornar array de todas as bandeiras criadas
 
-        - resposta:
+    - resposta:
+
+        ```json
+        [
+          {
+            "id":1,
+            "nome":"shell"
+          },
+          {
+            "id":2,
+            "nome":"ipiranga"
+          }
+        ]
+        ``` 
+
+
+### /abastecimento
+
+    endpoints focados em abastecimentos 
+
+- POST /abastecimento
+    
+    endpoint vai criar um novo abastecimento
+        
+    - body:
+
+      ```json
+        {
+          "placa":"BRA2E19",
+          "valorLitro":23.34,
+          "litrosAbastecidos":34.12,
+          "id_tanque":1
+        }
+      ```
+        
+        
+    - resposta:
+
+        - sucesso:
 
             ```json
-            [
-              {
-                "id":1,
-                "nome":"shell"
-              },
-              {
-                "id":2,
-                "nome":"ipiranga"
-              }
-            ]
-            ``` 
+            {
+              "message": "abastecimento adicionado"
+            }
+            ```
