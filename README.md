@@ -134,6 +134,18 @@ esses endpoitns são destinados para acesso de informações dos usuarios
 
     endpoint vai excluir o usuario com login igual aos provido na URL
 
+- PUT /users/:login
+
+    endpoint que atualiza o nome de um usuario especifico
+
+    - body:
+
+      ```json
+        {
+          "name":"arthur"
+        }
+      ```
+
 
 ### /stations
 

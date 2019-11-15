@@ -19,5 +19,14 @@ module.exports = {
       res.send({ message: "user deleted" });
     });
 
+  },
+  updateUser: (req, res) => {
+    banco.updateUsuario(req.params.login, req.body.name, (back, err) => {
+      if (err) {
+        return res.status(500).send({ message: 'error updating user', err: err });
+      }
+      res.send({ message: "user updated" });
+    })
+
   }
 }

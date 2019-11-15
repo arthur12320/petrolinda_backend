@@ -95,6 +95,16 @@ module.exports = {
         callback(result);
       }
     });
+  },
+  updateUsuario: (id, nome, callback) => {
+    let sql = `UPDATE PetroLinda.usuario SET nome = ${db.escape(nome)} WHERE (login = ${db.escape(id)});`;
+    db.query(sql, (err, result) => {
+      if (err) {
+        callback(null, err);
+      } else {
+        callback(result);
+      }
+    });
   }
 }
 
