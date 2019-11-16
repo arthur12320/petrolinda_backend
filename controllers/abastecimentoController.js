@@ -10,7 +10,10 @@ module.exports = {
       if (err) {
         return res.status(500).send({ message: 'error criando abastecimento', sqlErr: err });
       }
-      return res.send({ message: 'abastecimento adicionado' });
+      if(result.affectedRows == 0){
+        return res.status(500).send({ message: 'rollback na transaction', repsonse: result });
+      }
+      return res.send({ message: 'abastecimento adicionado' , repsonse:result});
 
     });
 

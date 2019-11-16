@@ -91,6 +91,17 @@ module.exports = {
 
     });
   },
+  getAllAbastecimentos: (callback)=>{
+    let sql = `SELECT * from abastecimentos`;
+    db.query(sql, (err, result) => {
+      if (err) {
+        console.log(err);
+        callback(null, err);
+      } else {
+        callback(result)
+      }
+    })
+  },
   getAllPostos: (callback) => {
     let sql = `SELECT A.id,A.razao_social,A.nome_fantasia,A.longitude,A.latitude,A.nome_fantasia FROM posto AS A INNER JOIN bandeira AS B ON B.id = A.bandeira_id`;
     db.query(sql, (err, result) => {
@@ -160,6 +171,16 @@ module.exports = {
   },
   lastAbastecimentos: (callback) => {
     let sql = `SELECT * from abastecimentos ORDER BY abastecimentos.abastecimentos_id DESC LIMIT 100;`;
+    db.query(sql, (err, result) => {
+      if (err) {
+        callback(null, err);
+      } else {
+        callback(result);
+      }
+    });
+  },
+  listAllTanques: (callback) => {
+    let sql = `SELECT * from tanque`;
     db.query(sql, (err, result) => {
       if (err) {
         callback(null, err);
