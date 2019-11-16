@@ -183,7 +183,12 @@ endpoints focados nas funcionalidades relcionadas aos postos
           "longitude":-7.990685,
           "latitude":-34.845299,
           "bandeira_id":1,
-          "endereco_id":1
+          "cep":53130540,
+	        "estado":"PE",
+	        "cidade":"olinda",
+	        "bairro":"casa caiada",
+	        "rua":"av. min marcos freire",
+	        "numero":3142
         }
         ``` 
 
@@ -265,4 +270,15 @@ endpoints focados em tanques
           }
         ]
       ```
+
+### /utils
+
+endpoints extras e uteis principalmente usados para debug 
+
+- GET /utils/listEnderecos
+
+  retorna a lista de todos os endereços criados
+
+
+  
 

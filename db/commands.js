@@ -13,6 +13,15 @@ module.exports = {
 
     })
   },
+  getAllEnderecos: (callback)=>{
+    let sql = `SELECT * FROM endereco`;
+    db.query(sql, (err, result) => {
+      if (err) {
+        callback(null, err);
+      }
+      callback(result);
+    })
+  },
   findLogin: (login, callback) => {
     let sql = `SELECT * FROM usuario WHERE login = ${db.escape(login)}`;
     db.query(sql, (err, result) => {
@@ -35,6 +44,24 @@ module.exports = {
   createNullEndereco: (callback) => {
     let sql = "INSERT INTO `PetroLinda`.`endereco` () VALUES ()";
     db.query(sql, (err, result) => {
+      if (err) {
+        callback(null, err);
+      } else {
+        callback(result.insertId)
+      }
+    })
+  },
+  createEndereco: (cep,estado,cidade,bairro,rua,numero,callback) => {
+    let newEndereco = {
+      cep,
+      estado,
+      bairro,
+      cidade,
+      rua,
+      numero
+    }
+    let sql = "INSERT INTO `PetroLinda`.`endereco` SET ?";
+    db.query(sql,newEndereco, (err, result) => {
       if (err) {
         callback(null, err);
       } else {

@@ -15,13 +15,24 @@ module.exports = {
     });
   },
   addPosto: (req, res) => {
-    const { razao_social, nome_fantasia, longitude, latitude, bandeira_id, endereco_id } = req.body;
-    banco.addPosto(razao_social, nome_fantasia, longitude, latitude, bandeira_id, endereco_id, (result, err) => {
-      if (err) {
-        return res.status(500).send({ message: 'error creating posto', err: err });
+    const { razao_social, nome_fantasia, longitude, latitude, bandeira_id, cep, estado, cidade, bairro, rua,numero  } = req.body;
+
+    banco.createEndereco(cep,estado,cidade,bairro,rua,numero,(enderecoID,err)=>{
+      if(err){
+        return res.status(500).send({ message: 'error creating endereço do posto', err: err });
       }
-      return res.send({ message: 'posto criado' })
+
+      banco.addPosto(razao_social, nome_fantasia, longitude, latitude, bandeira_id, enderecoID, (result, err) => {
+        if (err) {
+          return res.status(500).send({ message: 'error creating posto', err: err });
+        }
+        return res.send({ message: 'posto criado' })
+      })
+
     })
+
+
+    
 
   }
 }
